@@ -1,0 +1,26 @@
+% This is Comment
+% #   table name
+% *   primary key
+% *@  auto_increment primary_key
+% +   insert_must_key
+
+%
+% Table user
+% user_id is primary key and auto increment
+% user_name is a 'must' key(NOT NULL and no default value)
+% user_mobile is ordinary key(Can be NULL or has default value)
+
+#user
+*@user_id
++user_name
+user_mobile
+
+%
+% Table user_ext
+% user_id is primary key but not auto increment
+
+#user_ext
+*user_id
+user_sex
+user_age
+user_email
