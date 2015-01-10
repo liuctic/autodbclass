@@ -15,7 +15,7 @@ def getCommentStr(lang, ver):
         )
     return s
     
-def GenPHP(tbname, primk, primIsAuto, mustk, ordk):
+def GenPHP(tbname, primk, primIsAuto, mustk, ordk, headRequires=""):
     GenPHPVersion = "0.1.1"
     cmt = getCommentStr("PHP", GenPHPVersion)
 
@@ -41,6 +41,8 @@ def GenPHP(tbname, primk, primIsAuto, mustk, ordk):
         
         #comment
         ofile.write("/*\n"+cmt+"\n*/\n\n")
+        #headRequireFiles
+        ofile.write(headRequires+"\n")
         #class tup
         ofile.write("class " + tbname + "_tup {\n")
         for k in allkeys:
@@ -125,7 +127,7 @@ def GenPHP(tbname, primk, primIsAuto, mustk, ordk):
                     "        $sth = $dbh->prepare($sql);\n"
                     "        $sth->execute($params);\n"
                     "        $this->_count = 0;\n"
-                    "        unset($this->_data);\n"
+                    "        $this->_data=array();\n"
                     "        while($result = $sth->fetch(PDO::FETCH_OBJ)) {\n"
                     "            $x = new " + tbname + "_tup($result);\n"
                     "            $this->_data[] = $x;\n"
